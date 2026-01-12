@@ -7,4 +7,10 @@ nav_order: 2
 
 # Lesson 2: Simple Navigation
 
-This lesson connects two screens using basic navigation.
+We connect two screens with basic navigation.
+
+## What you will do
+- Create a second screen
+- Move between screens
+
+[Next: Week 2 Quiz](quiz/){: .btn .btn-primary }

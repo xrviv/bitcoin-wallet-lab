@@ -7,4 +7,10 @@ nav_order: 1
 
 # Lesson 1: UI Basics
 
-This lesson builds a simple screen with text and buttons.
+We build a simple screen with text and buttons.
+
+## What you will build
+- A basic screen layout
+- A button with a click action
+
+[Next: Simple Navigation](lesson-2-navigation/){: .btn .btn-primary }

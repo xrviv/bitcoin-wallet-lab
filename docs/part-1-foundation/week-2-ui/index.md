@@ -7,4 +7,11 @@ has_children: true
 
 # Week 2: UI Basics
 
-We build simple screens and learn basic navigation.
+We build simple screens and connect them together.
+
+## Lessons
+- UI basics
+- Simple navigation
+- Short quiz
+
+[Start Lesson 1](lesson-1-ui-basics/){: .btn .btn-primary }

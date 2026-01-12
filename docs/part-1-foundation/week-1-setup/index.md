@@ -7,4 +7,11 @@ has_children: true
 
 # Week 1: Setup
 
-We set up tools and learn the basics we need to start building.
+We prepare the tools and learn the basics needed to begin.
+
+## Lessons
+- Course intro
+- Tools and setup
+- Short quiz
+
+[Start Lesson 1](lesson-1-intro/){: .btn .btn-primary }

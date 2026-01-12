@@ -6,4 +6,9 @@ nav_order: 3
 
 # Summary
 
-You now have the basic setup and a simple app structure in place.
+## What you finished
+- Your tools are ready
+- You can build simple screens
+- You can move between screens
+
+[Next: Next Steps](next-steps/){: .btn .btn-primary }

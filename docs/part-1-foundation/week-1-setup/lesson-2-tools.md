@@ -7,4 +7,11 @@ nav_order: 2
 
 # Lesson 2: Tools and Setup
 
-This lesson lists the tools you need and how to check they work.
+We list the tools you need and how to confirm they work.
+
+## What you will install
+- Java and Android tools
+- Android Studio
+- A working emulator or device
+
+[Next: Week 1 Quiz](quiz/){: .btn .btn-primary }
