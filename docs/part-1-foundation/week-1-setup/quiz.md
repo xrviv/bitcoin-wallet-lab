@@ -2,7 +2,7 @@
 title: Week 1 Quiz
 parent: Week 1: Setup
 grand_parent: Part 1: Foundation
-nav_order: 3
+nav_order: 4
 ---
 
 # Week 1 Quiz

@@ -14,4 +14,4 @@ We list the tools you need and how to confirm they work.
 - Android Studio
 - A working emulator or device
 
-[Next: Week 1 Quiz](quiz/){: .btn .btn-primary }
+[Next: Basic Project Setup](lesson-3-basic-project-setup/){: .btn .btn-primary }
