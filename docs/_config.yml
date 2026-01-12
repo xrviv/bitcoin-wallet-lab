@@ -12,3 +12,9 @@ aux_links:
     - "https://github.com/xrviv/bitcoin-wallet-lab"
 
 footer_content: "Copyright 2026. Distributed under the MIT License."
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
