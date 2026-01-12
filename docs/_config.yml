@@ -1,0 +1,14 @@
+title: Bitcoin Wallet Android Course
+description: Build a reproducible Bitcoin wallet from scratch with Android and Kotlin
+theme: just-the-docs
+url: "https://xrviv.github.io"
+baseurl: "/bitcoin-wallet-android-course"
+
+search_enabled: true
+search.heading_level: 3
+
+aux_links:
+  "GitHub Repo":
+    - "https://github.com/xrviv/bitcoin-wallet-android-course"
+
+footer_content: "Copyright 2026. Distributed under the MIT License."
