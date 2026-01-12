@@ -7,6 +7,7 @@ Learn to build a Bitcoin wallet for Android, step by step.
 - Code snapshots for each part
 - Exercises and solutions
 - Reference resources
+- Reproducibility notes and checks across the course
 
 ## Quick start
 1. Read the course outline in `COURSE_OUTLINE.md`.
@@ -18,4 +19,3 @@ Learn to build a Bitcoin wallet for Android, step by step.
 - `exercises/` — practice tasks
 - `solutions/` — answer keys
 - `resources/` — cheatsheets and references
-
