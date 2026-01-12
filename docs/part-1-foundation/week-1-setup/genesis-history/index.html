@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis: The First Bitcoin Android App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f5f2eb; color: #2d2a26; }
+        h1, h2, h3, .heading-font { font-family: 'Space Grotesk', sans-serif; }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin: 0 auto; height: 300px; max-height: 400px; }
+        .interactive-card { transition: all 0.3s ease; cursor: pointer; border-left: 4px solid transparent; }
+        .interactive-card:hover { transform: translateX(5px); border-left-color: #d97706; background-color: #fff8ed; }
+        .interactive-card.active { border-left-color: #d97706; background-color: #fff8ed; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .tech-layer { transition: all 0.3s ease; }
+        .tech-layer:hover { transform: scale(1.02); }
+        .nav-btn { transition: color 0.2s ease; border-bottom: 2px solid transparent; }
+        .nav-btn.active { color: #d97706; border-bottom-color: #d97706; }
+
+        /* Custom Scrollbar for panels */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #efebe0; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #d1ccbf; border-radius: 3px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #b0aba0; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-[#f5f2eb]/90 backdrop-blur-md border-b border-stone-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold heading-font tracking-tight text-stone-800">Genesis<span class="text-amber-600">Wallet</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="navTo('hero')" class="nav-btn active text-stone-600 hover:text-stone-900 font-medium text-sm">Overview</button>
+                    <button onclick="navTo('history')" class="nav-btn text-stone-600 hover:text-stone-900 font-medium text-sm">History</button>
+                    <button onclick="navTo('tech')" class="nav-btn text-stone-600 hover:text-stone-900 font-medium text-sm">Tech Stack</button>
+                    <button onclick="navTo('impact')" class="nav-btn text-stone-600 hover:text-stone-900 font-medium text-sm">Impact</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="pt-16 pb-12 sm:pt-24 px-4 bg-gradient-to-b from-[#f5f2eb] to-[#ebe7de]">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-amber-700 uppercase bg-amber-100 rounded-full">
+                    The First Successful Android Implementation
+                </div>
+                <h1 class="text-5xl sm:text-6xl font-bold text-stone-900 mb-6 tracking-tight">
+                    "Bitcoin Wallet"
+                </h1>
+                <p class="text-xl text-stone-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    In early 2011, Andreas Schildbach released the first decentralized mobile wallet. It didn't just store coins; it proved Bitcoin could exist purely peer-to-peer on a smartphone using <b>SPV technology</b>.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <button onclick="navTo('history')" class="bg-stone-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-stone-700 transition shadow-lg">Explore History</button>
+                    <button onclick="navTo('tech')" class="bg-white text-stone-800 border border-stone-300 px-6 py-3 rounded-lg font-medium hover:bg-stone-50 transition shadow-sm">View Architecture</button>
+                </div>
+                <div class="mt-6">
+                    <a href="../lesson-2-tools/" class="inline-block bg-white text-stone-800 border border-stone-300 px-6 py-2 rounded-lg font-medium hover:bg-stone-50 transition shadow-sm">Continue to Lesson 2</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- HISTORY TIMELINE -->
+        <section id="history" class="py-16 px-4 bg-white border-y border-stone-200">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-10 text-center sm:text-left">
+                    <h2 class="text-3xl font-bold text-stone-800 mb-4">The Timeline</h2>
+                    <p class="text-stone-600 max-w-2xl">
+                        Explore the critical milestones of the first Android wallet. Unlike centralized solutions (like the Mt. Gox mobile site), this app ran directly on the Bitcoin network. Click the timeline items to reveal details.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                    <!-- List -->
+                    <div class="md:col-span-4 space-y-3" id="timeline-list">
+                        <!-- JS populated -->
+                    </div>
+                    <!-- Detail View -->
+                    <div class="md:col-span-8 bg-[#fbfaf8] rounded-2xl p-8 border border-stone-100 shadow-sm flex flex-col justify-center min-h-[300px]">
+                        <div id="timeline-content" class="animate-fade-in">
+                            <!-- JS populated -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TECH STACK ANALYSIS -->
+        <section id="tech" class="py-16 px-4 bg-[#f5f2eb]">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-stone-800 mb-4">Under the Hood: The Tech Stack</h2>
+                    <p class="text-stone-600 max-w-3xl">
+                        Running Bitcoin on 2011 hardware (single-core CPUs, 512MB RAM) was impossible with the standard client. Schildbach utilized a specific Java stack and the "Simplified Payment Verification" (SPV) protocol to make it lightweight.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+                    <!-- Interactive Stack Diagram -->
+                    <div class="space-y-4">
+                        <div class="text-sm font-semibold text-stone-500 uppercase tracking-wider mb-2 pl-1">Application Layers (Click to Inspect)</div>
+
+                        <!-- Layer 1 -->
+                        <div onclick="showTechDetail('ui')" class="tech-layer group bg-white border-l-4 border-amber-500 p-6 rounded-r-lg shadow-sm cursor-pointer hover:shadow-md">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="text-lg font-bold text-stone-800">Presentation Layer (UI)</h3>
+                                    <p class="text-sm text-stone-500">Native Android (Java/XML)</p>
+                                </div>
+                                <div class="text-2xl opacity-20 group-hover:opacity-100 transition">📱</div>
+                            </div>
+                        </div>
+
+                        <!-- Layer 2 -->
+                        <div onclick="showTechDetail('logic')" class="tech-layer group bg-white border-l-4 border-stone-600 p-6 rounded-r-lg shadow-sm cursor-pointer hover:shadow-md">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="text-lg font-bold text-stone-800">Business Logic</h3>
+                                    <p class="text-sm text-stone-500">Wallet Management & Key Storage</p>
+                                </div>
+                                <div class="text-2xl opacity-20 group-hover:opacity-100 transition">⚙️</div>
+                            </div>
+                        </div>
+
+                        <!-- Layer 3 -->
+                        <div onclick="showTechDetail('network')" class="tech-layer group bg-stone-800 border-l-4 border-stone-900 p-6 rounded-r-lg shadow-sm cursor-pointer hover:shadow-xl">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="text-lg font-bold text-white">Network Core (bitcoinj)</h3>
+                                    <p class="text-sm text-stone-400">P2P Mesh & SPV Implementation</p>
+                                </div>
+                                <div class="text-2xl text-white opacity-50 group-hover:opacity-100 transition">🌐</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detail Panel -->
+                    <div class="bg-white rounded-xl p-8 border border-stone-200 shadow-lg min-h-[400px]">
+                        <div id="tech-detail-content">
+                            <!-- Default Content -->
+                            <div class="h-full flex flex-col justify-center items-center text-center text-stone-400">
+                                <div class="text-4xl mb-4">⚡</div>
+                                <p>Select a layer on the left to analyze the architecture.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- THE DEVELOPER & IMPACT -->
+        <section id="impact" class="py-16 px-4 bg-white border-t border-stone-200">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+                    <!-- Developer Profile -->
+                    <div class="lg:col-span-5">
+                        <h2 class="text-2xl font-bold text-stone-800 mb-6">The Developer</h2>
+                        <div class="bg-[#f5f2eb] rounded-xl p-6 border border-stone-200">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-16 h-16 bg-stone-300 rounded-full flex items-center justify-center text-2xl font-bold text-stone-600">
+                                    AS
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-stone-900">Andreas Schildbach</h3>
+                                    <p class="text-stone-600 text-sm">Software Developer, Berlin</p>
+                                </div>
+                            </div>
+                            <p class="text-stone-700 leading-relaxed mb-4">
+                                A Google engineer at the time, Schildbach wanted to pay for coffee with Bitcoin. Finding no decentralized mobile solution, he built his own.
+                            </p>
+                            <ul class="space-y-2 text-sm text-stone-600">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-amber-600 font-bold">✓</span> Created the first Android Wallet
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-amber-600 font-bold">✓</span> Major contributor to <code>bitcoinj</code>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-amber-600 font-bold">✓</span> Defined the URI scheme for payments
+                                </li>
+                            </ul>
+                            <div class="mt-6 pt-4 border-t border-stone-300 text-xs text-stone-500">
+                                License: GPLv3 (Open Source)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Impact Charts -->
+                    <div class="lg:col-span-7">
+                        <h2 class="text-2xl font-bold text-stone-800 mb-6">Impact & Adoption</h2>
+                        <p class="text-stone-600 mb-6">
+                            The release of "Bitcoin Wallet" triggered a wave of mobile adoption. By proving SPV worked on mobile, it paved the way for every non-custodial wallet that followed.
+                        </p>
+
+                        <div class="bg-white p-4 rounded-xl border border-stone-100 shadow-sm">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-semibold text-stone-700">Estimated Early Mobile Adoption (2011-2013)</h3>
+                                <div class="flex gap-2 text-xs">
+                                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span>Installs</span>
+                                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-stone-400"></span>Forks</span>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="adoptionChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-8 px-4 mt-auto">
+        <div class="max-w-6xl mx-auto text-center text-sm">
+            <p class="mb-2">Generated for Educational Purposes</p>
+            <p class="opacity-60">Source Data: Public repositories, Bitcointalk archives (2011-2012), Google Code history.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- DATA STORE ---
+        const historyData = [
+            {
+                id: 1,
+                date: "Jan 2011",
+                title: "Initial Release",
+                content: "Andreas Schildbach publishes 'Bitcoin Wallet' to the Android Market (now Play Store). It is the first fully decentralized mobile client. Unlike other attempts that just showed a website view of a centralized exchange, this app held the private keys directly on the phone's storage."
+            },
+            {
+                id: 2,
+                date: "Mar 2011",
+                title: "QR Code Integration",
+                content: "The addition of QR code scanning using the ZXing ('Zebra Crossing') library was a game changer. It established the 'scan-to-pay' UX pattern that became the global standard for crypto payments. Before this, users had to copy-paste impossible strings of characters."
+            },
+            {
+                id: 3,
+                date: "June 2011",
+                title: "NFC Experiments",
+                content: "Schildbach was extremely forward-looking. He implemented NFC (Near Field Communication) support, allowing users to tap phones to exchange Bitcoin addresses. This was years before Apple Pay or Google Pay mainstreamed tap-to-pay."
+            },
+            {
+                id: 4,
+                date: "Late 2011",
+                title: "Exchange Integration",
+                content: "Features were added to display fiat exchange rates directly in the wallet, pulling data from early exchanges. This helped users understand the real-world value of their holdings as volatility increased."
+            },
+            {
+                id: 5,
+                date: "2012",
+                title: "Bluetooth Offline Pay",
+                content: "Development continued with features like Bluetooth payments, allowing transactions to be constructed even when internet connectivity was spotty, a crucial feature for p2p cash scenarios."
+            }
+        ];
+
+        const techDetails = {
+            ui: {
+                title: "Android Presentation Layer",
+                stack: ["Java Views", "Fragments (Later)", "ZXing Library"],
+                desc: "Built using standard Android Activities. The key innovation here was the <b>Intent system</b>. Schildbach designed the app to listen for 'bitcoin:' links, allowing web browsers to trigger the wallet app automatically.",
+                features: ["QR Scanner integration", "Address Book", "Transaction History List", "PIN Protection"]
+            },
+            logic: {
+                title: "Business Logic & Storage",
+                stack: ["SQLite (Metadata)", "File System (Keys)", "Event Bus"],
+                desc: "This layer handled the crucial security. Private keys were stored in a `wallet.dat` compatible format, encrypted on the device's internal storage. It managed the creation of change addresses to preserve privacy.",
+                features: ["Key Serialization", "Transaction Builder", "Fee Estimation", "Backup/Restore (Mnemonic came later)"]
+            },
+            network: {
+                title: "The Core: bitcoinj",
+                stack: ["SPV Protocol", "Bloom Filters", "P2P Mesh"],
+                desc: "The magic sauce. Written by Mike Hearn and Schildbach. <b>bitcoinj</b> implements the Bitcoin protocol in Java. Crucially, it uses <b>SPV (Simplified Payment Verification)</b>. Instead of downloading the 50GB+ blockchain, it only downloads block headers (80 bytes each) and requests only relevant transactions from peers.",
+                features: ["Peer Discovery", "Block Header Verification", "Merkle Branch Validation", "Bloom Filtering"]
+            }
+        };
+
+        // --- STATE MANAGEMENT ---
+        let currentTimelineId = 1;
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTimelineList();
+            updateTimelineContent(1);
+            initChart();
+        });
+
+        // --- NAVIGATION LOGIC ---
+        function navTo(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                const offset = 80; // height of sticky header
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = element.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+
+            // Update active state
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // --- TIMELINE LOGIC ---
+        function renderTimelineList() {
+            const container = document.getElementById('timeline-list');
+            container.innerHTML = historyData.map(item => `
+                <div onclick="updateTimelineContent(${item.id})"
+                     class="interactive-card bg-white p-4 rounded-lg shadow-sm mb-3 ${item.id === currentTimelineId ? 'active' : ''}"
+                     id="timeline-btn-${item.id}">
+                    <div class="text-xs font-bold text-amber-600 uppercase tracking-wide">${item.date}</div>
+                    <div class="font-bold text-stone-800">${item.title}</div>
+                </div>
+            `).join('');
+        }
+
+        function updateTimelineContent(id) {
+            currentTimelineId = id;
+
+            // Update visual active state
+            document.querySelectorAll('.interactive-card').forEach(el => el.classList.remove('active'));
+            document.getElementById(`timeline-btn-${id}`).classList.add('active');
+
+            // Update Content
+            const data = historyData.find(d => d.id === id);
+            const contentDiv = document.getElementById('timeline-content');
+
+            contentDiv.style.opacity = '0';
+            setTimeout(() => {
+                contentDiv.innerHTML = `
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-4xl text-stone-300 font-bold">0${data.id}</span>
+                        <h3 class="text-2xl font-bold text-stone-800">${data.title}</h3>
+                    </div>
+                    <div class="prose prose-stone text-stone-600 leading-relaxed">
+                        ${data.content}
+                    </div>
+                `;
+                contentDiv.style.opacity = '1';
+            }, 200);
+        }
+
+        // --- TECH STACK LOGIC ---
+        function showTechDetail(layerKey) {
+            const data = techDetails[layerKey];
+            const container = document.getElementById('tech-detail-content');
+
+            container.innerHTML = `
+                <div class="animate-fade-in text-left">
+                    <h3 class="text-2xl font-bold text-amber-700 mb-2">${data.title}</h3>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        ${data.stack.map(s => `<span class="px-2 py-1 bg-stone-100 text-stone-600 text-xs rounded border border-stone-200 font-mono">${s}</span>`).join('')}
+                    </div>
+                    <p class="text-stone-700 mb-6 leading-relaxed border-b border-stone-100 pb-6">
+                        ${data.desc}
+                    </p>
+                    <h4 class="font-bold text-stone-800 mb-3 text-sm uppercase tracking-wide">Key Capabilities</h4>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        ${data.features.map(f => `<li class="flex items-center gap-2 text-sm text-stone-600"><span class="w-1.5 h-1.5 bg-amber-500 rounded-full"></span>${f}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+
+        // --- CHART LOGIC ---
+        function initChart() {
+            const ctx = document.getElementById('adoptionChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan 2011', 'Jun 2011', 'Jan 2012', 'Jun 2012', 'Jan 2013'],
+                    datasets: [
+                        {
+                            label: 'Active Installs (Est.)',
+                            data: [100, 1500, 8000, 25000, 60000],
+                            borderColor: '#d97706',
+                            backgroundColor: 'rgba(217, 119, 6, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 4,
+                            pointHoverRadius: 6
+                        },
+                        {
+                            label: 'GitHub Forks/Derivatives',
+                            data: [0, 5, 20, 50, 120],
+                            borderColor: '#78716c',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            fill: false,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20,
+                                font: { family: "'Inter', sans-serif" }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#2d2a26',
+                            titleFont: { family: "'Space Grotesk', sans-serif" },
+                            bodyFont: { family: "'Inter', sans-serif" },
+                            padding: 10,
+                            displayColors: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#f5f5f4'
+                            },
+                            ticks: {
+                                font: { family: "'Inter', sans-serif", size: 10 }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: { family: "'Inter', sans-serif", size: 10 }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

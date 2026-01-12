@@ -11,6 +11,7 @@ We prepare the tools and learn the basics needed to begin.
 
 ## Lessons
 - Course intro
+- Genesis history (standalone): [open page](genesis-history/)
 - Tools and setup
 - Basic project setup
 - Short quiz

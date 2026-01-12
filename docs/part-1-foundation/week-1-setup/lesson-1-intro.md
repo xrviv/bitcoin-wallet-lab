@@ -14,4 +14,4 @@ This lesson explains what we are building and how the course works.
 - Understand the project goal
 - Know how to use the lesson pages
 
-[Next: Tools and Setup](../lesson-2-tools/){: .btn .btn-primary }
+[Next: Genesis History](../genesis-history/){: .btn .btn-primary }
