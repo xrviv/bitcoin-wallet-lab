@@ -19,4 +19,5 @@ Build a fully functional, reproducible Bitcoin wallet for Android, from zero to 
 - 8GB+ RAM and 20GB free disk space
 
 [Get Started](part-1-foundation/){: .btn .btn-primary }
+[Course Outline (Learning)](course-outline-learning/){: .btn }
 [View on GitHub](https://github.com/xrviv/bitcoin-wallet-lab){: .btn }
