@@ -35,11 +35,20 @@
                 <div class="flex items-center">
                     <span class="text-2xl font-bold heading-font tracking-tight text-stone-800">Genesis<span class="text-amber-600">Wallet</span></span>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <button onclick="navTo('hero')" class="nav-btn active text-stone-600 hover:text-stone-900 font-medium text-sm">Overview</button>
-                    <button onclick="navTo('history')" class="nav-btn text-stone-600 hover:text-stone-900 font-medium text-sm">History</button>
-                    <button onclick="navTo('tech')" class="nav-btn text-stone-600 hover:text-stone-900 font-medium text-sm">Tech Stack</button>
-                    <button onclick="navTo('impact')" class="nav-btn text-stone-600 hover:text-stone-900 font-medium text-sm">Impact</button>
+                <div class="flex items-center gap-6">
+                    <div class="hidden md:flex space-x-8">
+                        <button onclick="navTo('hero')" class="nav-btn active text-stone-600 hover:text-stone-900 font-medium text-sm">Overview</button>
+                        <button onclick="navTo('history')" class="nav-btn text-stone-600 hover:text-stone-900 font-medium text-sm">History</button>
+                        <button onclick="navTo('tech')" class="nav-btn text-stone-600 hover:text-stone-900 font-medium text-sm">Tech Stack</button>
+                        <button onclick="navTo('impact')" class="nav-btn text-stone-600 hover:text-stone-900 font-medium text-sm">Impact</button>
+                        <button onclick="navTo('history-story')" class="nav-btn text-stone-600 hover:text-stone-900 font-medium text-sm">Read the History</button>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-stone-600 hidden lg:inline">Audio</span>
+                        <audio controls preload="none" class="h-8">
+                            <source src="../../../assets/audio/Schildbach-Wallet-Invented-Mobile-Bitcoin-SPV.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,7 +72,11 @@
                 <div class="flex justify-center gap-4">
                     <button onclick="navTo('history')" class="bg-stone-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-stone-700 transition shadow-lg">Explore History</button>
                     <button onclick="navTo('tech')" class="bg-white text-stone-800 border border-stone-300 px-6 py-3 rounded-lg font-medium hover:bg-stone-50 transition shadow-sm">View Architecture</button>
+                    <button onclick="navTo('history-story')" class="bg-amber-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-amber-500 transition shadow-sm">Read the History</button>
                 </div>
+                <p class="mt-4 text-sm text-stone-500">
+                    Listen to the audio player in the top right.
+                </p>
                 <div class="mt-6">
                     <a href="../lesson-2-tools/" class="inline-block bg-white text-stone-800 border border-stone-300 px-6 py-2 rounded-lg font-medium hover:bg-stone-50 transition shadow-sm">Continue to Lesson 2</a>
                 </div>
@@ -219,6 +232,127 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <!-- LONG HISTORY -->
+        <section id="history-story" class="py-16 px-4 bg-[#f5f2eb] border-t border-stone-200">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-stone-900 mb-6">The Genesis of Mobile Bitcoin: The Story of the Schildbach Wallet</h2>
+                <p class="text-stone-700 leading-relaxed mb-6">
+                    In early 2011, Bitcoin was different. Most people needed a desktop computer, a fast connection, and time to sync a growing blockchain. Paying for coffee was a forum idea, not a daily action.
+                </p>
+                <p class="text-stone-700 leading-relaxed mb-8">
+                    That changed when Andreas Schildbach released "Bitcoin Wallet" for Android. It was the first successful non-custodial mobile wallet. It proved a phone could use Bitcoin without a hosted account.
+                </p>
+
+                <h3 class="text-2xl font-bold text-stone-800 mb-4">1. The Historical Context (2011)</h3>
+                <p class="text-stone-700 leading-relaxed mb-4">
+                    In 2011, flagship Android phones were the Samsung Galaxy S and the Nexus S. They had single-core CPUs and about 512 MB of RAM.
+                </p>
+                <p class="text-stone-700 leading-relaxed mb-4">
+                    A full Bitcoin node required the entire ledger. That was too heavy for a mobile phone. Early mobile efforts were web views of exchanges like Mt. Gox. Users did not control their keys.
+                </p>
+                <p class="text-stone-700 leading-relaxed mb-8">
+                    Schildbach chose a native Android app that spoke peer to peer. That choice set a new standard for mobile wallets.
+                </p>
+
+                <h3 class="text-2xl font-bold text-stone-800 mb-4">2. The Tech Stack: The SPV Breakthrough</h3>
+                <p class="text-stone-700 leading-relaxed mb-4">
+                    The app succeeded because of Simplified Payment Verification, or SPV. SPV let the app verify payments without downloading the full blockchain.
+                </p>
+                <p class="text-stone-700 leading-relaxed mb-4">
+                    The core library was bitcoinj, a Java implementation of the Bitcoin protocol. Mike Hearn created it. Schildbach maintained it and used it for the wallet.
+                </p>
+                <p class="text-stone-700 leading-relaxed mb-4">
+                    SPV downloads block headers only. A block header is 80 bytes. The wallet checks the Merkle root to prove a transaction is in a block without downloading the full block.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <div class="bg-white border border-stone-200 rounded-lg p-4">
+                        <div class="text-sm font-semibold text-stone-500 uppercase tracking-wide mb-1">Storage Impact</div>
+                        <div class="text-stone-700">Reduced requirements from gigabytes to megabytes.</div>
+                    </div>
+                    <div class="bg-white border border-stone-200 rounded-lg p-4">
+                        <div class="text-sm font-semibold text-stone-500 uppercase tracking-wide mb-1">Network Impact</div>
+                        <div class="text-stone-700">Allowed the app to sync in seconds instead of days.</div>
+                    </div>
+                </div>
+
+                <h4 class="text-xl font-bold text-stone-800 mb-3">The UI/UX Innovations</h4>
+                <p class="text-stone-700 leading-relaxed mb-4">
+                    QR codes came from the ZXing library. This created the scan to pay flow that is still standard.
+                </p>
+                <p class="text-stone-700 leading-relaxed mb-4">
+                    NFC tap to pay arrived in late 2011. Few phones supported it, but the idea was ahead of its time.
+                </p>
+                <p class="text-stone-700 leading-relaxed mb-8">
+                    Schildbach also designed the bitcoin: URI scheme handler. It let the wallet open from a link and prefill a payment.
+                </p>
+
+                <h3 class="text-2xl font-bold text-stone-800 mb-4">3. The Developer: Andreas Schildbach</h3>
+                <p class="text-stone-700 leading-relaxed mb-4">
+                    Schildbach was a disciplined software engineer. He released the app under the GPLv3 license, so the code stayed open.
+                </p>
+                <p class="text-stone-700 leading-relaxed mb-8">
+                    He was a primary maintainer of bitcoinj. That library powered early wallets like Multibit and Hive. He also pushed for standards that helped mobile users.
+                </p>
+
+                <h3 class="text-2xl font-bold text-stone-800 mb-4">4. Challenges and Controversies</h3>
+                <p class="text-stone-700 leading-relaxed mb-4">
+                    In 2013, Android had a SecureRandom flaw. It weakened the randomness used to generate private keys.
+                </p>
+                <p class="text-stone-700 leading-relaxed mb-8">
+                    The wallet was vulnerable because it created keys on device. Schildbach shipped an emergency update and handled the issue with transparency.
+                </p>
+
+                <h3 class="text-2xl font-bold text-stone-800 mb-4">5. The Legacy: From 2011 to Today</h3>
+                <p class="text-stone-700 leading-relaxed mb-4">
+                    The wallet is still on the Play Store today. It competes with many others, but its influence is everywhere.
+                </p>
+                <p class="text-stone-700 leading-relaxed mb-4">
+                    The header-first sync model is a direct evolution of SPV in bitcoinj. The bitcoin URI standard is still in use. The wallet proved non-custodial control could be mobile.
+                </p>
+                <p class="text-stone-700 leading-relaxed mb-8">
+                    It made Bitcoin portable and practical. It showed that decentralization could fit in a pocket.
+                </p>
+
+                <h3 class="text-2xl font-bold text-stone-800 mb-4">Summary of Technical Specifications</h3>
+                <div class="overflow-x-auto bg-white border border-stone-200 rounded-lg mb-2">
+                    <table class="min-w-full text-left text-sm">
+                        <thead class="bg-stone-100 text-stone-700">
+                            <tr>
+                                <th class="px-4 py-3 font-semibold">Component</th>
+                                <th class="px-4 py-3 font-semibold">Technology</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-stone-700">
+                            <tr class="border-t border-stone-200">
+                                <td class="px-4 py-3">Language</td>
+                                <td class="px-4 py-3">Java (Native Android)</td>
+                            </tr>
+                            <tr class="border-t border-stone-200">
+                                <td class="px-4 py-3">Network Protocol</td>
+                                <td class="px-4 py-3">SPV (Simplified Payment Verification)</td>
+                            </tr>
+                            <tr class="border-t border-stone-200">
+                                <td class="px-4 py-3">Key Library</td>
+                                <td class="px-4 py-3">bitcoinj</td>
+                            </tr>
+                            <tr class="border-t border-stone-200">
+                                <td class="px-4 py-3">Database</td>
+                                <td class="px-4 py-3">SQLite (for transaction metadata)</td>
+                            </tr>
+                            <tr class="border-t border-stone-200">
+                                <td class="px-4 py-3">Security</td>
+                                <td class="px-4 py-3">On-device encryption (AES)</td>
+                            </tr>
+                            <tr class="border-t border-stone-200">
+                                <td class="px-4 py-3">License</td>
+                                <td class="px-4 py-3">GPLv3 (Open Source)</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
