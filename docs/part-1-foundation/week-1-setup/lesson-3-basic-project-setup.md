@@ -129,8 +129,14 @@ Then start it.
 
 ```bash
 avdmanager create avd -n wallet_api_34 -k "system-images;android-34;google_apis;x86_64"
-emulator -avd wallet_api_34
+emulator -avd wallet_api_34 -no-snapshot
 ```
+
+> Tip: A successful run shows the emulator window with the Android UI shortly after the command starts.  
+> If it does not, check system virtualization, emulator config, ADB/device connection, and graphics backend.  
+> Read the emulator logs and focus on the first error line.  
+> Apply one change at a time, then rerun.  
+{: .note }
 
 ### Troubleshooting: AVD not found
 List AVDs to confirm the name.  
