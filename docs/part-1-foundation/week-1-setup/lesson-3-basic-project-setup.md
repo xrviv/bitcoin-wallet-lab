@@ -41,6 +41,26 @@ They use only the terminal.
 ## CLI tools you need
 Install the Android SDK command line tools first.  
 Use the official setup guide: [Android command line tools](https://developer.android.com/studio#command-tools).  
+Pick the "Command line tools only" package for your OS.  
+On Linux, unzip into `~/Android/Sdk/cmdline-tools/latest/`.  
+On Windows, unzip into `%LOCALAPPDATA%\Android\Sdk\cmdline-tools\latest\`.  
+The Linux zip name looks like `commandlinetools-linux-*_latest.zip`.  
+
+### Recommended packages
+Install the latest stable versions.  
+Use the newest build tools, platform, and emulator.  
+Example versions are shown below.  
+
+Required:
+- Command line tools (latest).  
+- Platform Tools (latest).  
+- Emulator (latest).  
+- Build Tools (example: 34.0.0).  
+- Android platform (example: Android 14 / API 34).  
+- System image (example: Android 14, Google APIs, x86_64).  
+
+Optional:
+- Sources for the Android platform (for docs and source).  
 
 `sdkmanager` installs SDK platforms and system images.  
 It also manages licenses for SDK packages.  
@@ -53,6 +73,44 @@ It comes from the Android Emulator package.
 
 `adb` connects your computer to devices.  
 It installs and launches your app.  
+
+### Example commands (Linux)
+Adjust paths and versions to match the latest packages.  
+
+```bash
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+export ANDROID_AVD_HOME="$HOME/.config/.android/avd"
+
+sdkmanager --install "platform-tools" "emulator"
+sdkmanager --install "platforms;android-34" "build-tools;34.0.0"
+sdkmanager --install "system-images;android-34;google_apis;x86_64"
+sdkmanager --licenses
+```
+
+### Troubleshooting: sdkmanager not found
+This means the command line tools are not installed.  
+Download the "Command line tools only" package for Linux.  
+Unzip into `~/Android/Sdk/cmdline-tools/latest/`.  
+Confirm `~/Android/Sdk/cmdline-tools/latest/bin/sdkmanager` exists.  
+Re-run your `export` commands.  
+Then run `sdkmanager --version`.  
+
+### Troubleshooting: unzip path errors
+Use `-d` to set the output folder.  
+Make sure the folder exists first.  
+
+```bash
+mkdir -p ~/Android/Sdk/cmdline-tools/latest
+unzip commandlinetools-linux-13114758_latest.zip -d ~/Android/Sdk/cmdline-tools/latest
+```
+
+If you see a nested `cmdline-tools` folder, move its contents up.  
+
+```bash
+mv ~/Android/Sdk/cmdline-tools/latest/cmdline-tools/* ~/Android/Sdk/cmdline-tools/latest/
+rmdir ~/Android/Sdk/cmdline-tools/latest/cmdline-tools
+```
 
 ### 1) Install tools and set paths
 Set your SDK path.  
@@ -73,6 +131,22 @@ Then start it.
 avdmanager create avd -n wallet_api_34 -k "system-images;android-34;google_apis;x86_64"
 emulator -avd wallet_api_34
 ```
+
+### Troubleshooting: AVD not found
+List AVDs to confirm the name.  
+Use `emulator -list-avds` or `avdmanager list avd`.  
+If the list is empty, create the AVD again.  
+If the AVD path is not under `~/.android/avd`, set `ANDROID_AVD_HOME`.  
+
+```bash
+export ANDROID_AVD_HOME="$HOME/.config/.android/avd"
+```
+
+### Troubleshooting: /dev/kvm is not found
+This means hardware acceleration is off.  
+Enable VT in BIOS.  
+Install and load KVM on Linux.  
+See: https://developer.android.com/studio/run/emulator-acceleration#vm-linux  
 
 ### 3) Confirm the device
 Check that the device is listed.  
