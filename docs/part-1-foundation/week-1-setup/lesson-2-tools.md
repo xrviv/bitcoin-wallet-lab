@@ -37,4 +37,4 @@ It is the official IDE for Android.
 It gives direct access to the Android SDK and emulator.  
 It also keeps the build steps consistent for learning and reproducibility.  
 
-[Next: Basic Project Setup](lesson-3-basic-project-setup/){: .btn .btn-primary }
+[Next: Basic Project Setup](../lesson-3-basic-project-setup/){: .btn .btn-primary }
