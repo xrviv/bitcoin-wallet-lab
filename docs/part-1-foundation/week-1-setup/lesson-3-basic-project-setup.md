@@ -200,4 +200,11 @@ adb shell am start -n com.example.bitcoinwallet/.MainActivity
 
 If you already use Android Studio, you can skip this.  
 
+### What success looks like
+Gradle prints `BUILD SUCCESSFUL`.  
+`adb install` prints `Success`.  
+The emulator opens the app.  
+You see the "Hello from the CLI." message.  
+The app appears in the launcher list.  
+
 [Next: Week 1 Quiz](quiz/){: .btn .btn-primary }
