@@ -207,4 +207,37 @@ The emulator opens the app.
 You see the "Hello from the CLI." message.  
 The app appears in the launcher list.  
 
+### Expected folder layout
+The user's project folder should look like this.  
+
+```
+bitcoin-wallet/
+├── build.gradle
+├── settings.gradle
+├── gradle/
+│   └── wrapper/
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── gradlew
+├── gradlew.bat
+└── app/
+    ├── build.gradle
+    ├── build/
+    │   └── outputs/
+    │       └── apk/
+    │           └── debug/
+    │               └── app-debug.apk
+    └── src/
+        └── main/
+            ├── AndroidManifest.xml
+            ├── java/
+            │   └── com/
+            │       └── example/
+            │           └── bitcoinwallet/
+            │               └── MainActivity.java
+            └── res/
+                └── layout/
+                    └── activity_main.xml
+```
+
 [Next: Week 1 Quiz](quiz/){: .btn .btn-primary }
