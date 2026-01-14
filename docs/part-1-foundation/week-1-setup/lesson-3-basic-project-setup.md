@@ -14,27 +14,79 @@ This lesson creates your first empty Android app in Android Studio.
 - Create a new Empty Activity project.
 - Run the app on a device or emulator.
 
-## Steps
+## GUI steps (Android Studio)
 1. Open Android Studio.
 2. Click "New Project."
 3. Choose the "Empty Activity" template.
 4. Set the project name and location.
-5. Keep the language as Java.
+5. Keep the language as Java (see note below about Java vs Kotlin).
 6. Keep the minimum SDK at the default.
 7. Click "Finish."
-8. Click "Run" and wait for the app to launch.
+8. Wait for Gradle sync to finish.
+9. Select a device or emulator from the device dropdown.
+10. Click "Run" and wait for the app to launch.
+
+### Why Java for this course?
+
+This course uses Java because many production Bitcoin wallets still use Java or a Java/Kotlin mix. The choice depends on your goals:
+
+**For Android fundamentals and modern job market alignment:** Start with Kotlin. It is the dominant choice in newer native wallets (Phoenix, Unstoppable, Nunchuk, Green) and aligns with current Android patterns (coroutines, modern dependency injection, Compose, etc.).
+
+**For conceptual clarity and "least magic" for beginners:** Java remains a defensible starting point. It is explicit, widely understood, and interoperates perfectly with Kotlin later. Many real Bitcoin wallets still carry substantial Java code (Muun, Mycelium), and Java fundamentals map cleanly to Kotlin concepts.
+
+**For building cross-platform wallets quickly:** The industry often chooses cross-platform frameworks (React Native / TypeScript) or shared-core architectures (Kotlin Multiplatform, Rust, C) to avoid duplicating security logic. In this model, Android language choice becomes more about the UI shell than wallet correctness.
+
+| Project | Repo | GitHub language breakdown (percent of repo) |
+| --- | --- | --- |
+| Muun | [https://github.com/muun/apollo](https://github.com/muun/apollo) | Java **32.1%**, Kotlin **31.6%**, Go **21.4%**, Rust **14.7%**, Shell **0.1%**, Dockerfile **0.1%** |
+| Mycelium | [https://github.com/mycelium-com/wallet-android](https://github.com/mycelium-com/wallet-android) | Kotlin **50.8%**, Java **49.0%**, Other **0.2%** |
+| BitBanana | [https://github.com/michaelWuensch/BitBanana](https://github.com/michaelWuensch/BitBanana) | Java **99.0%**, Other **1.0%** |
+| Phoenix (ACINQ) | [https://github.com/ACINQ/phoenix](https://github.com/ACINQ/phoenix) | Kotlin **53.5%**, Swift **46.2%**, Other **0.3%** |
+| AirGap Vault | [https://github.com/airgap-it/airgap-vault](https://github.com/airgap-it/airgap-vault) | TypeScript **89.3%**, Kotlin **4.1%**, Swift **3.6%**, Java **1.7%**, HTML **0.4%**, Other **0.9%** |
+| Unstoppable Wallet (Android) | [https://github.com/horizontalsystems/unstoppable-wallet-android](https://github.com/horizontalsystems/unstoppable-wallet-android) | Kotlin **100.0%** |
+| Bitkey | [https://github.com/proto-at-block/bitkey](https://github.com/proto-at-block/bitkey) | Kotlin **41.5%**, C **38.0%**, Rust **14.9%**, HCL **1.5%**, Python **1.3%**, Swift **1.0%**, Other **1.8%** |
+| Zeus | [https://github.com/ZeusLN/zeus](https://github.com/ZeusLN/zeus) | TypeScript **96.0%**, JavaScript **2.5%**, Kotlin **0.8%**, Swift **0.4%**, Java **0.2%**, Objective-C **0.1%** |
+| Nunchuk (Android) | [https://github.com/nunchuk-io/nunchuk-android](https://github.com/nunchuk-io/nunchuk-android) | Kotlin **99.9%**, Other **0.1%** |
+| Blockstream Green (Android) | [https://github.com/Blockstream/green_android](https://github.com/Blockstream/green_android) | Kotlin **94.7%**, Java **4.6%**, Other **0.7%** |
+| Edge (React GUI) | [https://github.com/EdgeApp/edge-react-gui](https://github.com/EdgeApp/edge-react-gui) | TypeScript **84.5%**, JavaScript **13.5%**, HTML **2.0%** |
+
+#### Reproducibility and language choice
+
+For Bitcoin wallets, reproducibility (or at least deterministic, auditable builds) is often more important than the Java vs Kotlin debate.
+
+**What language choice affects (and what it does not):**
+
+Java vs Kotlin generally does not determine reproducibility by itself. Both compile to JVM bytecode and are packaged by the same Android toolchain (Gradle + Android Gradle Plugin + D8/R8).
+
+Language can influence build determinism indirectly through:
+- Dependency ecosystem choices (common Kotlin libraries vs older Java libs).
+- Build plugins (KSP/KAPT, Compose tooling).
+- Generated code paths and annotation processing.
+
+**What matters more for reproducible Android builds:**
+
+Regardless of language, reproducibility improves when you:
+- Pin toolchains (Gradle wrapper, Android Gradle Plugin, JDK version, NDK if used).
+- Pin dependencies (lockfiles / version catalogs, avoid dynamic versions, avoid "latest").
+- Avoid nondeterministic build inputs (timestamps embedded in assets, build IDs, unstable codegen).
+- Use a consistent environment (containerized builds, documented SDK packages, deterministic CI).
+
+**Practical guidance for this course:**
+
+This course will eventually teach "wallets you can verify." We frame language as a UI implementation detail, and reproducibility as a discipline: "We can write UI in Java or Kotlin; correctness and reproducibility come from pinned toolchains and a verifiable build pipeline."
 
 ## If something fails
 - Check that the Android SDK is installed.
 - Check that your emulator or device is connected.
 - Check that a device is selected in the toolbar.
 
-## What success looks like
-You see a blank screen with a hello message.
-Android Studio shows "BUILD SUCCESSFUL."
-Your app appears in the device app list.
+## What success looks like (GUI)
+You see the app on the selected device.
+The screen shows the default "Hello World" text.
+The Run tool window shows "BUILD SUCCESSFUL."
+The app appears in the device app list.
 
-## Doing it in the CLI (Optional)
+## CLI steps (Optional)
 These steps mirror the Android Studio flow.  
 They use only the terminal.  
 
@@ -162,8 +214,14 @@ adb devices
 ```
 
 ### 4) Create a minimal project
-Make the folders.  
-Then create the Gradle and app files.  
+Make the folders.
+Then create the Gradle and app files.
+
+> Note: The versions shown below are current as of January 2026. For the latest versions, check:
+> - Android Gradle Plugin: [developer.android.com/build/releases/gradle-plugin](https://developer.android.com/build/releases/gradle-plugin)
+> - AndroidX AppCompat: [developer.android.com/jetpack/androidx/releases/appcompat](https://developer.android.com/jetpack/androidx/releases/appcompat)
+> - Material Components: [github.com/material-components/material-components-android/releases](https://github.com/material-components/material-components-android/releases)
+{: .note }  
 
 ```bash
 mkdir -p bitcoin-wallet/app/src/main/java/com/example/bitcoinwallet
@@ -189,7 +247,7 @@ include(":app")
 EOF
 cat > build.gradle <<'EOF'
 plugins {
-    id "com.android.application" version "8.4.1" apply false
+    id "com.android.application" version "8.13.2" apply false
 }
 EOF
 cat > app/build.gradle <<'EOF'
@@ -217,8 +275,8 @@ android {
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:1.7.0"
-    implementation "com.google.android.material:material:1.12.0"
+    implementation "androidx.appcompat:appcompat:1.7.1"
+    implementation "com.google.android.material:material:1.14.0"
 }
 EOF
 cat > app/src/main/AndroidManifest.xml <<'EOF'
@@ -280,7 +338,7 @@ adb shell am start -n com.example.bitcoinwallet/.MainActivity
 
 If you already use Android Studio, you can skip this.  
 
-### What success looks like
+### What success looks like (CLI)
 Gradle prints `BUILD SUCCESSFUL`.  
 `adb install` prints `Success`.  
 The emulator opens the app.  
