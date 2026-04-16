@@ -37,7 +37,7 @@ The screen shows the default "Hello World" text.
 The Run tool window shows "BUILD SUCCESSFUL."
 The app appears in the device app list.
 
-> **Golden Path:** If you completed the GUI steps successfully, you can proceed to the [Week 1 Quiz](quiz/). The CLI sections below are optional for learners who want command-line experience or need to work without Android Studio.
+> **Golden Path:** If you completed the GUI steps successfully, you can proceed to the [Week 1 Quiz](../quiz/). The CLI sections below are optional for learners who want command-line experience or need to work without Android Studio.
 {: .note }
 
 ## CLI steps (Optional)
@@ -239,7 +239,7 @@ Section 1 uses three configuration files to tell Gradle how to build the app:
 - `build.gradle` (root) applies the Android Gradle Plugin to your project.
 - `app/build.gradle` configures the app module: SDK versions, dependencies, and build settings.
 
-Section 2 adds the app code files (covered in [Lesson 4](lesson-4-app-source-files/)):
+Section 2 adds the app code files (covered in [Lesson 4](../lesson-4-app-source-files/)):
 
 - `AndroidManifest.xml` tells Android what your app is called and which activity to launch.
 - `MainActivity.java` is the entry point that Android runs when you open the app.
@@ -397,4 +397,4 @@ This course will eventually teach "wallets you can verify." We frame language as
 
 ---
 
-[Next: Lesson 4 (App Source Files)](lesson-4-app-source-files/){: .btn .btn-primary }
+[Next: Lesson 4 (App Source Files)](../lesson-4-app-source-files/){: .btn .btn-primary }

@@ -118,5 +118,5 @@ bitcoin-wallet/
                     └── activity_main.xml
 ```
 
-[Back: Lesson 3 (Gradle Files)](lesson-3-basic-project-setup/){: .btn }
-[Next: Week 1 Quiz](quiz/){: .btn .btn-primary }
+[Back: Lesson 3 (Gradle Files)](../lesson-3-basic-project-setup/){: .btn }
+[Next: Week 1 Quiz](../quiz/){: .btn .btn-primary }
