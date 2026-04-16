@@ -1,0 +1,94 @@
+:root {
+  --body-background-color: #f5f2eb;
+  --sidebar-color: #eee9df;
+  --search-background-color: #f7f3ea;
+  --table-background-color: #fffdfa;
+  --code-background-color: #fbf8f1;
+  --body-text-color: #2d2a26;
+  --body-heading-color: #1f1d1a;
+  --nav-child-link-color: #605a52;
+  --link-color: #a15c00;
+  --btn-primary-color: #b46500;
+  --base-button-color: #fff8ed;
+  --border-color: #dfd8cc;
+}
+
+html,
+body {
+  font-family: "Inter", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+.site-title,
+.nav-list .nav-list-item > .nav-list-link {
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.side-bar {
+  border-right: 1px solid var(--border-color);
+  background: linear-gradient(180deg, #f3efe6 0%, #ebe5da 100%);
+}
+
+.site-header {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.site-title {
+  color: #2a2622;
+  font-weight: 700;
+}
+
+.search-input {
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.main {
+  background: radial-gradient(circle at top right, #efe9dd 0%, #f5f2eb 34%, #f5f2eb 100%);
+}
+
+.main-content {
+  max-width: 900px;
+}
+
+.main-content a {
+  text-underline-offset: 2px;
+}
+
+.main-content .btn {
+  border-radius: 10px;
+  border: 1px solid #d8cfbf;
+  box-shadow: 0 1px 2px rgba(34, 28, 18, 0.08);
+}
+
+.main-content .btn:hover {
+  transform: translateY(-1px);
+}
+
+.main-content .btn-primary {
+  color: #fff;
+  background-color: #b46500;
+  border-color: #9d5800;
+}
+
+.main-content .btn-primary:hover {
+  background-color: #9d5800;
+}
+
+.main-content code {
+  border-radius: 6px;
+}
+
+.main-content pre {
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.nav-list .nav-list-link:hover,
+.nav-list .nav-list-item > .nav-list-link.active {
+  color: #a15c00;
+}
