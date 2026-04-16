@@ -229,20 +229,23 @@ Gradle was created in 2007 as a more flexible alternative to Maven. Google adopt
 ### 4) Create a minimal project
 
 You will create a minimal Android project from scratch.
-The project needs three configuration files to tell Gradle how to build the app:
+Do this in two sections.
+Start with Gradle configuration files.
+Then add app source files.
+
+Section 1 uses three configuration files to tell Gradle how to build the app:
 
 - `settings.gradle` declares which modules exist in your project and where Gradle should look for plugins.
 - `build.gradle` (root) applies the Android Gradle Plugin to your project.
 - `app/build.gradle` configures the app module: SDK versions, dependencies, and build settings.
 
-After the configuration files, you will create the app code itself:
+Section 2 adds the app code files:
 
 - `AndroidManifest.xml` tells Android what your app is called and which activity to launch.
 - `MainActivity.java` is the entry point that Android runs when you open the app.
 - `activity_main.xml` defines the layout (a simple "Hello" message).
 
-Make the folders.
-Then create the Gradle and app files.
+Make the folders first.
 
 > Note: The versions shown below are current as of January 2026. For the latest versions, check:
 > - Android Gradle Plugin: [developer.android.com/build/releases/gradle-plugin](https://developer.android.com/build/releases/gradle-plugin)
@@ -254,7 +257,15 @@ Then create the Gradle and app files.
 mkdir -p bitcoin-wallet/app/src/main/java/com/example/bitcoinwallet
 mkdir -p bitcoin-wallet/app/src/main/res/layout
 cd bitcoin-wallet
-cat > settings.gradle <<'EOF'
+```
+
+#### Section 1: Gradle Files
+
+In VS Code, create these Gradle files first.
+
+#### File: `settings.gradle`
+
+```groovy
 pluginManagement {
     repositories {
         google()
@@ -271,13 +282,19 @@ dependencyResolutionManagement {
 }
 rootProject.name = "bitcoin-wallet"
 include(":app")
-EOF
-cat > build.gradle <<'EOF'
+```
+
+#### File: `build.gradle`
+
+```groovy
 plugins {
     id "com.android.application" version "8.13.2" apply false
 }
-EOF
-cat > app/build.gradle <<'EOF'
+```
+
+#### File: `app/build.gradle`
+
+```groovy
 plugins {
     id "com.android.application"
 }
@@ -305,8 +322,15 @@ dependencies {
     implementation "androidx.appcompat:appcompat:1.7.1"
     implementation "com.google.android.material:material:1.14.0"
 }
-EOF
-cat > app/src/main/AndroidManifest.xml <<'EOF'
+```
+
+#### Section 2: App Source Files
+
+In VS Code, create these app files next.
+
+#### File: `app/src/main/AndroidManifest.xml`
+
+```xml
 <manifest package="com.example.bitcoinwallet" xmlns:android="http://schemas.android.com/apk/res/android">
     <application
         android:label="Bitcoin Wallet"
@@ -321,8 +345,11 @@ cat > app/src/main/AndroidManifest.xml <<'EOF'
         </activity>
     </application>
 </manifest>
-EOF
-cat > app/src/main/java/com/example/bitcoinwallet/MainActivity.java <<'EOF'
+```
+
+#### File: `app/src/main/java/com/example/bitcoinwallet/MainActivity.java`
+
+```java
 package com.example.bitcoinwallet;
 
 import android.os.Bundle;
@@ -335,8 +362,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 }
-EOF
-cat > app/src/main/res/layout/activity_main.xml <<'EOF'
+```
+
+#### File: `app/src/main/res/layout/activity_main.xml`
+
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -348,7 +378,6 @@ cat > app/src/main/res/layout/activity_main.xml <<'EOF'
         android:layout_height="wrap_content"
         android:text="Hello from the CLI." />
 </FrameLayout>
-EOF
 ```
 
 ### 5) Build and run
