@@ -324,6 +324,9 @@ dependencies {
 }
 ```
 
+> Note: There are two `build.gradle` files because one controls the whole project and one controls the app module. The root `build.gradle` sets project-wide build setup, including the Android plugin version used by modules. The `app/build.gradle` sets app details like SDK versions, app ID, build types, and dependencies.
+{: .note }
+
 #### Section 2: App Source Files
 
 In VS Code, create these app files next.
