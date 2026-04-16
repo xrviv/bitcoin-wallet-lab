@@ -13,7 +13,8 @@ We prepare the tools and learn the basics needed to begin.
 - Course intro
 - Genesis history (standalone): [open page](genesis-history/)
 - Tools and setup
-- Basic project setup
+- Basic project setup (Gradle files)
+- App source files
 - Short quiz
 
 [Start Lesson 1](lesson-1-intro/){: .btn .btn-primary }
