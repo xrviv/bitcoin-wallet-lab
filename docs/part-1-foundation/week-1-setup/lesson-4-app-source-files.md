@@ -10,6 +10,17 @@ nav_order: 4
 This lesson continues Track B from Lesson 3.
 You will add the app source files and run the app.
 
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 1rem 0;">
+  <iframe
+    src="https://www.youtube.com/embed/vaZkXMEpvaI?si=89f-AxLTbB3NhaHF"
+    title="YouTube video player"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+
 #### Section 2: App Source Files
 
 In VS Code, create these app files next.
