@@ -87,11 +87,11 @@ It is important because it keeps the visual layout separate from the Java code, 
 ```
 
 ### 5) Build and run
-Create the Gradle wrapper.
-Build the app.
-Install it on the emulator.
+Run these commands from the root of your Android project.
+This is the folder that contains `settings.gradle`.
 
 ```bash
+cd ~/code/bwl-proj/bitcoin-wallet
 gradle wrapper
 ./gradlew assembleDebug
 adb install -r app/build/outputs/apk/debug/app-debug.apk
