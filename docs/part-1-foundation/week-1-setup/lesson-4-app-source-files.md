@@ -16,6 +16,9 @@ In VS Code, create these app files next.
 
 #### File: `app/src/main/AndroidManifest.xml`
 
+This file tells Android what the app is and which screen should open first.  
+It is important because Android needs this file before it can install, launch, and understand the app.
+
 ```xml
 <manifest package="com.example.bitcoinwallet" xmlns:android="http://schemas.android.com/apk/res/android">
     <application
@@ -35,6 +38,9 @@ In VS Code, create these app files next.
 
 #### File: `app/src/main/java/com/example/bitcoinwallet/MainActivity.java`
 
+This file is the first Java screen that runs when the app opens.  
+A screen is one view of the app that the user can see and use, and this file connects the Android startup flow to that first view.
+
 ```java
 package com.example.bitcoinwallet;
 
@@ -51,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
 ```
 
 #### File: `app/src/main/res/layout/activity_main.xml`
+
+This file describes what appears on the first screen.  
+It is important because it keeps the visual layout separate from the Java code, which makes the app easier to change as the wallet grows.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
