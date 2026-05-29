@@ -90,6 +90,8 @@ It is important because it keeps the visual layout separate from the Java code, 
 Run these commands from the root of your Android project.
 This is the folder that contains `settings.gradle`.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/V-BKCHri-3Q?si=NOpWm1A5UPO_HBvk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ```bash
 cd ~/code/bwl-proj/bitcoin-wallet
 gradle wrapper
