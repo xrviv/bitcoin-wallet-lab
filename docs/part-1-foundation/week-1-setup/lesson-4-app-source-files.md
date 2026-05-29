@@ -95,6 +95,11 @@ This is the folder that contains `settings.gradle`.
 ```bash
 cd ~/code/bwl-proj/bitcoin-wallet
 gradle wrapper
+```
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xycC87kMK10?si=FkKbruJoBwkR0kT8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+```bash
 ./gradlew assembleDebug
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 adb shell am start -n com.example.bitcoinwallet/.MainActivity
